@@ -20,7 +20,7 @@ async def on_message(message): #when someone sends a message
         await message.channel.send("Received Request. Please wait patiently for generation "+message.author.mention)
         sentences = []
         sentences.push(message.content)
-        d = conditional_model(model_name=config.get('models', 'model_name'),temperature=0.75,seed=4,sentences=sentences)
+        d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
         for i in d:
             print(d[i])
 
