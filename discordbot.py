@@ -3,6 +3,7 @@ from discord import Webhook, RequestsWebhookAdapter
 import configparser
 import argparse
 import time
+import numpy
 
 from conditional_model import conditional_model
 from CModel import CModel
