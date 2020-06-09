@@ -84,10 +84,10 @@ async def on_message(message): #when someone sends a message
                     time.sleep(numwait)
                     if(current_user_is_1):
                         if(len(x)>0):
-                            webhook_LR1.send(x)
+                            webhook_lr1.send(x)
                     else:
                         if(len(x)>0):
-                            webhook_LR2.send(x)
+                            webhook_lr2.send(x)
                 else:
                     current_user_is_1 = not current_user_is_1
         await message.channel.send("Finished request from "+message.author.mention)
