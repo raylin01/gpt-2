@@ -2,6 +2,7 @@ import discord
 from discord import Webhook, RequestsWebhookAdapter
 import configparser
 import argparse
+import time
 
 from conditional_model import conditional_model
 
@@ -36,6 +37,7 @@ async def on_message(message): #when someone sends a message
                         webhook_gil2.send(x, username='GIL2')
                 else:
                     current_user_is_1 = not current_user_is_1
+                time.sleep(2)
 
 def main():
     global config
