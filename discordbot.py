@@ -35,6 +35,7 @@ def main():
     config = configparser.ConfigParser(allow_no_value=True)
     with open(args.config) as f:
         config.read_file(f)
+    print(config.get('chatbot', 'discord_token'))
     client.run(config.get('chatbot', 'discord_token'))
 
 if __name__ == '__main__':
