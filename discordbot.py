@@ -24,9 +24,9 @@ async def on_message(message): #when someone sends a message
         sentences.append(message.content)
         d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
         for i in d:
-            let listofmessages = d[i].split('\n')
+            listofmessages = d[i].split('\n')
             print(listofmessages)
-            let current_user_is_1 = true
+            current_user_is_1 = true
             for x in listofmessages:
                 if(x != "<|end of text|>"):
                     if(current_user_is_1):
