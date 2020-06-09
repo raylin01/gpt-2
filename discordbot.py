@@ -28,7 +28,7 @@ async def on_message(message): #when someone sends a message
         sentences = []
         sentences.append(message.content)
         #d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
-        d = x.runModel(sentences, numpy.random.randint(1,1000000))
+        d = gil_model.runModel(sentences, numpy.random.randint(1,1000000))
         await message.channel.send("Now responding to request '"+ message.content+"' from "+message.author.mention)
         for i in d:
             listofmessages = d[i].split('\n')
