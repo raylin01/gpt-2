@@ -5,6 +5,7 @@ import argparse
 import time
 
 from conditional_model import conditional_model
+from CModel import CModel
 
 #room codes
 gil_room = 719716464399089715
@@ -15,6 +16,8 @@ webhook_gil2 = Webhook.partial(719719628338626561, 'pCem7HKeqCo7yxFEroR-He7z70r8
 
 client = discord.Client()
 config = ""
+gil_model = ""
+
 
 @client.event
 async def on_message(message): #when someone sends a message
@@ -24,7 +27,8 @@ async def on_message(message): #when someone sends a message
         await message.channel.send("Received Request. Please wait patiently for generation "+message.author.mention)
         sentences = []
         sentences.append(message.content)
-        d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
+        #d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
+        d = x.runModel(sentences, numpy.random.randint(1,1000000))
         await message.channel.send("Now responding to request '"+ message.content+"' from "+message.author.mention)
         for i in d:
             listofmessages = d[i].split('\n')
@@ -46,6 +50,7 @@ async def on_message(message): #when someone sends a message
 
 def main():
     global config
+    global gil_model
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('--config', type=str, default="chatbot.cfg")
     args = arg_parser.parse_args()
@@ -53,6 +58,7 @@ def main():
     config = configparser.ConfigParser(allow_no_value=True)
     with open(args.config) as f:
         config.read_file(f)
+    gil_model = CModel(model_name="GIL", temperature= config.get('decoder', 'temperature'))
     client.run(config.get('chatbot', 'discord_token'))
 
 if __name__ == '__main__':
