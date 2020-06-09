@@ -59,7 +59,7 @@ def main():
     config = configparser.ConfigParser(allow_no_value=True)
     with open(args.config) as f:
         config.read_file(f)
-    gil_model = CModel(model_name="GIL", temperature= config.get('decoder', 'temperature'))
+    gil_model = CModel(model_name="GIL", temperature= float(config.get('decoder', 'temperature')))
     client.run(config.get('chatbot', 'discord_token'))
 
 if __name__ == '__main__':
