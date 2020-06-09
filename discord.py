@@ -1,0 +1,36 @@
+import discord
+from discord import Webhook, RequestsWebhookAdapter
+
+from conditional_model import conditional_model
+
+#room codes
+gil_room = 719716464399089715
+
+# webhooks
+webhook_gil1 = Webhook.partial(719719440639590400, '1p3kgVBClXhd3GFUzx874tmYLNQjPbTjMZtGPABHj7jgfDhAMZN0PFH1yCQRfgqBGgfU', adapter=RequestsWebhookAdapter())
+webhook_gil2 = Webhook.partial(719719628338626561, 'pCem7HKeqCo7yxFEroR-He7z70r8OoesMD2-PeOh-lf4EMVRDkCMQOAZaBTJ4yygszBv', adapter=RequestsWebhookAdapter())
+
+client = discord.Client()
+config = ""
+
+@client.event
+async def on_message(message): #when someone sends a message
+    if message.channel.id == gil_room and message.author != client.user:
+        #await message.channel.send("test on message") #send a good morning message
+        await message.channel.send("Received Request. Please wait patiently for generation "+message.author.mention)
+        sentences = []
+        sentences.push(message.content)
+        d = conditional_model(model_name='117M',temperature=0.75,seed=4,sentences=sentences)
+        for i in d:
+            print(d[i])
+
+def main():
+    global config
+    # Read the config
+    config = configparser.ConfigParser(allow_no_value=True)
+    with open(args.config) as f:
+        config.read_file(f)
+    client.run(config.get('chatbot', 'discord_token'))
+
+if __name__ == '__main__':
+    main()
