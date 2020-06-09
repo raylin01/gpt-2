@@ -1,6 +1,7 @@
 import discord
 from discord import Webhook, RequestsWebhookAdapter
 import configparser
+import argparse
 
 from conditional_model import conditional_model
 
@@ -27,6 +28,9 @@ async def on_message(message): #when someone sends a message
 
 def main():
     global config
+    arg_parser = argparse.ArgumentParser()
+    arg_parser.add_argument('--config', type=str, default="chatbot.cfg")
+    args = arg_parser.parse_args()
     # Read the config
     config = configparser.ConfigParser(allow_no_value=True)
     with open(args.config) as f:
