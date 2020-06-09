@@ -17,8 +17,9 @@ config = ""
 
 @client.event
 async def on_message(message): #when someone sends a message
-    if message.channel.id == gil_room and message.author != client.user:
+    if message.channel.id == gil_room and message.author != client.user and not message.author.bot:
         #await message.channel.send("test on message") #send a good morning message
+        print(message.author.id)
         await message.channel.send("Received Request. Please wait patiently for generation "+message.author.mention)
         sentences = []
         sentences.append(message.content)
