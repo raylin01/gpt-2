@@ -105,6 +105,8 @@ async def on_message(message): #when someone sends a message
 def main():
     global config
     global gil_model
+    global lr_model
+    global yuri_model
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument('--config', type=str, default="chatbot.cfg")
     args = arg_parser.parse_args()
