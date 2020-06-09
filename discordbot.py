@@ -25,7 +25,7 @@ async def on_message(message): #when someone sends a message
         sentences = []
         sentences.append(message.content)
         d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
-        await message.channel.send("Now responding to request "+ message.content+" from "+message.author.mention)
+        await message.channel.send("Now responding to request '"+ message.content+"' from "+message.author.mention)
         for i in d:
             listofmessages = d[i].split('\n')
             print(listofmessages)
@@ -35,12 +35,12 @@ async def on_message(message): #when someone sends a message
                     numwait = len(x) / 6
                     time.sleep(numwait)
                     if(current_user_is_1):
-                        webhook_gil1.send(x, username='GIL1')
+                        webhook_gil1.send(x)
                     else:
-                        webhook_gil2.send(x, username='GIL2')
+                        webhook_gil2.send(x)
                 else:
                     current_user_is_1 = not current_user_is_1
-        await message.channel.send("Finished request from "+message.bot.mention)
+        await message.channel.send("Finished request from "+message.author.mention)
 
 def main():
     global config
