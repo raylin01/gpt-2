@@ -24,7 +24,17 @@ async def on_message(message): #when someone sends a message
         sentences.append(message.content)
         d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
         for i in d:
-            print(d[i])
+            let listofmessages = d[i].split('\n')
+            print(listofmessages)
+            let current_user_is_1 = true
+            for x in listofmessages:
+                if(x != "<|end of text|>"):
+                    if(current_user_is_1):
+                        webhook_gil1.send(x, username='GIL1')
+                    else:
+                        webhook_gil2.send(x, username='GIL2')
+                else:
+                    current_user_is_1 = not current_user_is_1
 
 def main():
     global config
