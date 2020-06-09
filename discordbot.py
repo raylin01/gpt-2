@@ -26,7 +26,7 @@ async def on_message(message): #when someone sends a message
         for i in d:
             listofmessages = d[i].split('\n')
             print(listofmessages)
-            current_user_is_1 = true
+            current_user_is_1 = True
             for x in listofmessages:
                 if(x != "<|end of text|>"):
                     if(current_user_is_1):
