@@ -42,10 +42,10 @@ async def on_message(message): #when someone sends a message
                     numwait = len(x) / 6
                     time.sleep(numwait)
                     if(current_user_is_1):
-                        if(x.length>0):
+                        if(len(x)>0):
                             webhook_gil1.send(x)
                     else:
-                        if(x.length>0):
+                        if(len(x)>0):
                             webhook_gil2.send(x)
                 else:
                     current_user_is_1 = not current_user_is_1
