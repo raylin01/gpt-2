@@ -29,7 +29,7 @@ async def on_message(message): #when someone sends a message
         sentences = []
         sentences.append(message.content)
         #d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
-        d = gil_model.runModel(sentences, numpy.random.randint(1,1000000))
+        d = gil_model.runModel(sentences, numpy.random.randint(1,100000))
         await message.channel.send("Now responding to request '"+ message.content+"' from "+message.author.mention)
         for i in d:
             listofmessages = d[i].split('\n')
@@ -39,7 +39,11 @@ async def on_message(message): #when someone sends a message
                 x = x.replace("@everyone", "@ everyone")
                 x = x.replace("@here", "@ here")
                 if(x != "<|end of text|>"):
-                    numwait = len(x) / 6
+                    numwait = len(x) / 8
+                    if numwait < 1:
+                        numwait = 1
+                    elif numwait > 5:
+                        numwait = 5
                     time.sleep(numwait)
                     if(current_user_is_1):
                         if(len(x)>0):
