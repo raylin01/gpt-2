@@ -31,6 +31,8 @@ async def on_message(message): #when someone sends a message
             print(listofmessages)
             current_user_is_1 = True
             for x in listofmessages:
+                x = x.replace("@everyone", "@ everyone")
+                x = x.replace("@here", "@ here")
                 if(x != "<|end of text|>"):
                     numwait = len(x) / 6
                     time.sleep(numwait)
