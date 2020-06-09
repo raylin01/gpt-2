@@ -31,13 +31,14 @@ async def on_message(message): #when someone sends a message
             current_user_is_1 = True
             for x in listofmessages:
                 if(x != "<|end of text|>"):
+                    numwait = len(x) / 6
+                    time.sleep(numwait)
                     if(current_user_is_1):
                         webhook_gil1.send(x, username='GIL1')
                     else:
                         webhook_gil2.send(x, username='GIL2')
                 else:
                     current_user_is_1 = not current_user_is_1
-                time.sleep(2)
 
 def main():
     global config
