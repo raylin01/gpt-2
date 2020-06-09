@@ -21,7 +21,7 @@ async def on_message(message): #when someone sends a message
         #await message.channel.send("test on message") #send a good morning message
         await message.channel.send("Received Request. Please wait patiently for generation "+message.author.mention)
         sentences = []
-        sentences.push(message.content)
+        sentences.append(message.content)
         d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
         for i in d:
             print(d[i])
@@ -35,7 +35,6 @@ def main():
     config = configparser.ConfigParser(allow_no_value=True)
     with open(args.config) as f:
         config.read_file(f)
-    print(config.get('chatbot', 'discord_token'))
     client.run(config.get('chatbot', 'discord_token'))
 
 if __name__ == '__main__':
