@@ -184,18 +184,12 @@ async def on_message(message): #when someone sends a message
                 except IndexError:
                     name = "No Name"
                 x = re.sub(myRegexp, "", x).strip()
-                numwait = len(x) / 8
-                if numwait < 1:
-                    numwait = 1
-                elif numwait > 5:
-                    numwait = 5
-                time.sleep(numwait)
                 if(x != "<|end of text|>"):
-                    numwait = len(x) / 8
+                    numwait = len(x) // 8
                     if numwait < 1:
                         numwait = 1
-                    elif numwait > 5:
-                        numwait = 5
+                    elif numwait > 3:
+                        numwait = 3
                     time.sleep(numwait)
                     if(len(x)>0):
                         webhook_gil1.send(x, username=name, avatar_url=gil_dict.get(name))
@@ -215,11 +209,11 @@ async def on_message(message): #when someone sends a message
                 x = x.replace("@everyone", "@ everyone")
                 x = x.replace("@here", "@ here")
                 if(x != "<|end of text|>"):
-                    numwait = len(x) / 8
+                    numwait = len(x) // 10
                     if numwait < 1:
                         numwait = 1
-                    elif numwait > 5:
-                        numwait = 5
+                    elif numwait > 3:
+                        numwait = 3
                     time.sleep(numwait)
                     if(current_user_is_1):
                         if(len(x)>0):
@@ -262,18 +256,12 @@ async def on_message(message): #when someone sends a message
                     except IndexError:
                         name = "No Name"
                     x = re.sub(myRegexp, "", x).strip()
-                    numwait = len(x) / 8
-                    if numwait < 1:
-                        numwait = 1
-                    elif numwait > 5:
-                        numwait = 5
-                    time.sleep(numwait)
                     if(x != "<|end of text|>"):
-                        numwait = len(x) / 8
+                        numwait = len(x) // 8
                         if numwait < 1:
                             numwait = 1
-                        elif numwait > 5:
-                            numwait = 5
+                        elif numwait > 3:
+                            numwait = 3
                         time.sleep(numwait)
                         if(len(x)>0):
                             webhook_gaming.send(x, username=name, avatar_url=gaming_dict.get(name))
