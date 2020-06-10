@@ -129,7 +129,7 @@ async def on_message(message): #when someone sends a message
                         name = match[0]
                     except IndexError:
                         name = "No Name"
-                    x = strip(re.sub(myRegexp, "", x))
+                    x = re.sub(myRegexp, "", x).strip()
                     numwait = len(x) / 8
                     if numwait < 1:
                         numwait = 1
