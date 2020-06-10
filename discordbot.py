@@ -24,7 +24,7 @@ webhook_lr2 = Webhook.partial(720003904971997216, 'RqbpGrjN74CdCZbExaI7Bbm_BxMLV
 
 webhook_gaming = Webhook.partial(720138814571544668, '1W4syMnRBn1DsTl0xFD0PgvRuPpNZyv7_PWiZa6E6wZYyPQHx8tEHIgswAHdr7eILEAW', adapter=RequestsWebhookAdapter())
 
-gaming_dict = {"simplex":"https://cdn.discordapp.com/avatars/221888287533563904/62572e43e747686117f80f919baafe4e.png", "rlin":"https://cdn.discordapp.com/avatars/217870308433068033/f57d543fd16b0f35c443a1edbe37e16b.png", "surfaceintegral": "https://cdn.discordapp.com/avatars/355217077037957122/c2dd8c5bb4aef833433a4aed669bc60e.png", "Marblelemons": "https://cdn.discordapp.com/avatars/150039751888601088/7c76d2fa79b905328c727b111190ea90.png", "Chet": "https://cdn.discordapp.com/avatars/274050798403452928/aa6f1b3c069487dc3d94ac7a540b3bf2.png", "Minimax": "https://cdn.discordapp.com/avatars/171729697082834944/ace50fa72d5bb039833dd69c38a6d461.png", "An1ket":"https://cdn.discordapp.com/avatars/222217668026040325/fe4c239ca5b9abd155fc7c5fa7cf6e27.png"}
+gaming_dict = {"simplex":"https://cdn.discordapp.com/avatars/221888287533563904/b023d075d2d907feefbc4bf64b5d3e5b.png", "rlin":"https://cdn.discordapp.com/avatars/217870308433068033/f57d543fd16b0f35c443a1edbe37e16b.png", "surfaceintegral": "https://cdn.discordapp.com/avatars/355217077037957122/c2dd8c5bb4aef833433a4aed669bc60e.png", "Marblelemons": "https://cdn.discordapp.com/avatars/150039751888601088/7c76d2fa79b905328c727b111190ea90.png", "Chet": "https://cdn.discordapp.com/avatars/274050798403452928/aa6f1b3c069487dc3d94ac7a540b3bf2.png", "Minimax": "https://cdn.discordapp.com/avatars/171729697082834944/11b0695ea1d153057d27ac1e93554ae4.png", "An1ket":"https://cdn.discordapp.com/avatars/222217668026040325/fe4c239ca5b9abd155fc7c5fa7cf6e27.png"}
 gil_dict = { STAS1S_OW:
    'https://cdn.discordapp.com/avatars/157331161054445568/a_2a973ccfff1e90d18d39200c32912dea.gif',
   Marblelemons:
@@ -32,7 +32,7 @@ gil_dict = { STAS1S_OW:
   AlbatroS:
    'https://cdn.discordapp.com/avatars/150050060598640647/44eac98bef6788270928203ffc1ae816.png',
   simplex:
-   'https://cdn.discordapp.com/avatars/221888287533563904/62572e43e747686117f80f919baafe4e.png',
+   'https://cdn.discordapp.com/avatars/221888287533563904/b023d075d2d907feefbc4bf64b5d3e5b.png',
   Chloechoo:
    'https://cdn.discordapp.com/avatars/230557878619078656/ea9e068665275ad7d4a11603196bc52f.png',
   An1ket:
