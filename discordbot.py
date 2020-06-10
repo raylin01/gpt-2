@@ -133,14 +133,14 @@ async def on_message(message): #when someone sends a message
                         numwait = 5
                     time.sleep(numwait)
                     if(x != "<|end of text|>"):
-                    numwait = len(x) / 8
-                    if numwait < 1:
-                        numwait = 1
-                    elif numwait > 5:
-                        numwait = 5
-                    time.sleep(numwait)
-                    if(len(x)>0):
-                        webhook_gaming.send(x, username=name, avatar_url=gaming_dict.get(name))
+                        numwait = len(x) / 8
+                        if numwait < 1:
+                            numwait = 1
+                        elif numwait > 5:
+                            numwait = 5
+                        time.sleep(numwait)
+                        if(len(x)>0):
+                            webhook_gaming.send(x, username=name, avatar_url=gaming_dict.get(name))
         await message.channel.send("Finished request from "+message.author.mention)
 
 def main():
