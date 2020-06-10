@@ -124,7 +124,11 @@ async def on_message(message): #when someone sends a message
                 if(x != "<|end of text|>"):
                     myRegexp = r"\[(.*)\]/g"
                     match = re.findall(myRegexp, x)
-                    name = match[0]
+                    name ="No Name"
+                    try:
+                        name = match[0]
+                    except IndexError:
+                        name = "No Name"
                     x = strip(re.sub(myRegexp, "", x))
                     numwait = len(x) / 8
                     if numwait < 1:
