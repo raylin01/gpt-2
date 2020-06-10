@@ -122,7 +122,7 @@ async def on_message(message): #when someone sends a message
                 x = x.replace("@everyone", "@ everyone")
                 x = x.replace("@here", "@ here")
                 if(x != "<|end of text|>"):
-                    myRegexp = r"\[(.*)\]/g"
+                    myRegexp = r"\[(.*)\]"
                     match = re.findall(myRegexp, x)
                     name ="No Name"
                     try:
