@@ -24,7 +24,7 @@ webhook_lr2 = Webhook.partial(720003904971997216, 'RqbpGrjN74CdCZbExaI7Bbm_BxMLV
 
 webhook_gaming = Webhook.partial(720138814571544668, '1W4syMnRBn1DsTl0xFD0PgvRuPpNZyv7_PWiZa6E6wZYyPQHx8tEHIgswAHdr7eILEAW', adapter=RequestsWebhookAdapter())
 
-gaming_dict = {"simplex":"https://cdn.discordapp.com/avatars/221888287533563904/62572e43e747686117f80f919baafe4e.png", "rlin":"https://cdn.discordapp.com/avatars/217870308433068033/f57d543fd16b0f35c443a1edbe37e16b.png", "surfaceintegral": "https://cdn.discordapp.com/avatars/355217077037957122/c2dd8c5bb4aef833433a4aed669bc60e.png", "Marblelemons": "https://cdn.discordapp.com/avatars/150039751888601088/7c76d2fa79b905328c727b111190ea90.png", "Chet": "https://cdn.discordapp.com/avatars/274050798403452928/aa6f1b3c069487dc3d94ac7a540b3bf2.png", "Minimax": "https://cdn.discordapp.com/avatars/171729697082834944/aa56d42fdfe089bfd6cc132fcfafef07.png", "An1ket":"https://cdn.discordapp.com/avatars/222217668026040325/fe4c239ca5b9abd155fc7c5fa7cf6e27.png"}
+gaming_dict = {"simplex":"https://cdn.discordapp.com/avatars/221888287533563904/62572e43e747686117f80f919baafe4e.png", "rlin":"https://cdn.discordapp.com/avatars/217870308433068033/f57d543fd16b0f35c443a1edbe37e16b.png", "surfaceintegral": "https://cdn.discordapp.com/avatars/355217077037957122/c2dd8c5bb4aef833433a4aed669bc60e.png", "Marblelemons": "https://cdn.discordapp.com/avatars/150039751888601088/7c76d2fa79b905328c727b111190ea90.png", "Chet": "https://cdn.discordapp.com/avatars/274050798403452928/aa6f1b3c069487dc3d94ac7a540b3bf2.png", "Minimax": "https://cdn.discordapp.com/avatars/171729697082834944/ace50fa72d5bb039833dd69c38a6d461.png", "An1ket":"https://cdn.discordapp.com/avatars/222217668026040325/fe4c239ca5b9abd155fc7c5fa7cf6e27.png"}
 
 client = discord.Client()
 config = ""
@@ -53,11 +53,11 @@ async def on_message(message): #when someone sends a message
                 x = x.replace("@everyone", "@ everyone")
                 x = x.replace("@here", "@ here")
                 if(x != "<|end of text|>"):
-                    numwait = len(x) / 8
+                    numwait = len(x) / 10
                     if numwait < 1:
                         numwait = 1
-                    elif numwait > 5:
-                        numwait = 5
+                    elif numwait > 3:
+                        numwait = 3
                     time.sleep(numwait)
                     if(current_user_is_1):
                         if(len(x)>0):
