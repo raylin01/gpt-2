@@ -152,8 +152,8 @@ async def on_message(message): #when someone sends a message
         sentences = []
         sentences.append(message.content)
         #d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
-        d = conditional_model(model_name='GIL',temperature=float(config.get('decoder', 'temperature')),seed=numpy.random.randint(1,100000),sentences=sentences)
-        #d = gil_model.runModel(sentences, numpy.random.randint(1,100000))
+        #d = conditional_model(model_name='GIL',temperature=float(config.get('decoder', 'temperature')),seed=numpy.random.randint(1,100000),sentences=sentences)
+        d = gil_model.runModel(sentences, numpy.random.randint(1,100000))
         await message.channel.send("Now responding to request '"+ message.content+"' from "+message.author.mention)
         for i in d:
             listofmessages = d[i].split('\n')
@@ -200,8 +200,8 @@ async def on_message(message): #when someone sends a message
         sentences = []
         sentences.append(message.content)
         #d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
-        d = conditional_model(model_name='LR',temperature=float(config.get('decoder', 'temperature')),seed=numpy.random.randint(1,100000),sentences=sentences)
-        #d = lr_model.runModel(sentences, numpy.random.randint(1,100000))
+        #d = conditional_model(model_name='LR',temperature=float(config.get('decoder', 'temperature')),seed=numpy.random.randint(1,100000),sentences=sentences)
+        d = lr_model.runModel(sentences, numpy.random.randint(1,100000))
         await message.channel.send("Now responding to request '"+ message.content+"' from "+message.author.mention)
         for i in d:
             listofmessages = d[i].split('\n')
@@ -231,8 +231,8 @@ async def on_message(message): #when someone sends a message
         sentences = []
         sentences.append(message.content)
         #d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
-        #d = yuri_model.runModel(sentences, numpy.random.randint(1,100000))
-        d = conditional_model(model_name='yuri',temperature=float(config.get('decoder', 'temperature')),seed=numpy.random.randint(1,100000),sentences=sentences)
+        d = yuri_model.runModel(sentences, numpy.random.randint(1,100000))
+        #d = conditional_model(model_name='yuri',temperature=float(config.get('decoder', 'temperature')),seed=numpy.random.randint(1,100000),sentences=sentences)
         await message.channel.send("Now responding to request '"+ message.content+"' from "+message.author.mention)
         for i in d:
             await message.channel.send(d[i])
@@ -242,8 +242,8 @@ async def on_message(message): #when someone sends a message
         sentences = []
         sentences.append(message.content)
         #d = conditional_model(model_name=config.get('model', 'model_size'),temperature=0.75,seed=4,sentences=sentences)
-        #d = gaming_model.runModel(sentences, numpy.random.randint(1,100000))
-        d = conditional_model(model_name='gaming',temperature=float(config.get('decoder', 'temperature')),seed=numpy.random.randint(1,100000),sentences=sentences)
+        d = gaming_model.runModel(sentences, numpy.random.randint(1,100000))
+        #d = conditional_model(model_name='gaming',temperature=float(config.get('decoder', 'temperature')),seed=numpy.random.randint(1,100000),sentences=sentences)
         await message.channel.send("Now responding to request '"+ message.content+"' from "+message.author.mention)
         for i in d:
             listofmessages = d[i].split('\n')
@@ -284,10 +284,10 @@ def main():
     config = configparser.ConfigParser(allow_no_value=True)
     with open(args.config) as f:
         config.read_file(f)
-    #gil_model = CModel(model_name="GIL", temperature= float(config.get('decoder', 'temperature')))
-    #lr_model = CModel(model_name="LR", temperature= float(config.get('decoder', 'temperature')))
-    #yuri_model = CModel(model_name="yuri", temperature= float(config.get('decoder', 'temperature')))
-    #gaming_model = CModel(model_name="gaming", temperature= float(config.get('decoder', 'temperature')))
+    gil_model = CModel(model_name="GIL", temperature= float(config.get('decoder', 'temperature')))
+    lr_model = CModel(model_name="LR", temperature= float(config.get('decoder', 'temperature')))
+    yuri_model = CModel(model_name="yuri", temperature= float(config.get('decoder', 'temperature')))
+    gaming_model = CModel(model_name="gaming", temperature= float(config.get('decoder', 'temperature')))
 
     client.run(config.get('chatbot', 'discord_token'))
 
