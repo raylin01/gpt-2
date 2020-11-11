@@ -14,6 +14,7 @@ gil_room = 719716464399089715
 lr_room = 719988902148178072
 yuri_room = 720003297703886929
 gaming_room = 720134440411594862
+wak_room = 775965189081268265
 
 # webhooks
 webhook_gil1 = Webhook.partial(719719440639590400, '1p3kgVBClXhd3GFUzx874tmYLNQjPbTjMZtGPABHj7jgfDhAMZN0PFH1yCQRfgqBGgfU', adapter=RequestsWebhookAdapter())
@@ -23,6 +24,9 @@ webhook_lr1 = Webhook.partial(720003814316310540, 'QPObBD2sP3cXTsYJaupsZNMp7Zkvj
 webhook_lr2 = Webhook.partial(720003904971997216, 'RqbpGrjN74CdCZbExaI7Bbm_BxMLVKqMjVpZMMldwzMDF6Kn3OmipTtaZ9e2mCLsVQiz', adapter=RequestsWebhookAdapter())
 
 webhook_gaming = Webhook.partial(720138814571544668, '1W4syMnRBn1DsTl0xFD0PgvRuPpNZyv7_PWiZa6E6wZYyPQHx8tEHIgswAHdr7eILEAW', adapter=RequestsWebhookAdapter())
+
+webhook_wak = Webhook.partial(720138814571544668, 'H5fArbRbHvq3KvzWis4cxuEEfEI4Xe4-gIOWs2Ea3OB4jFMF5SYjdqjdgmcvl0n-8ekc', adapter=RequestsWebhookAdapter())
+
 
 gaming_dict = {"simplex":"https://cdn.discordapp.com/avatars/221888287533563904/b023d075d2d907feefbc4bf64b5d3e5b.png", "rlin":"https://cdn.discordapp.com/avatars/217870308433068033/f57d543fd16b0f35c443a1edbe37e16b.png", "surfaceintegral": "https://cdn.discordapp.com/avatars/355217077037957122/c2dd8c5bb4aef833433a4aed669bc60e.png", "Marblelemons": "https://cdn.discordapp.com/avatars/150039751888601088/7c76d2fa79b905328c727b111190ea90.png", "Chet": "https://cdn.discordapp.com/avatars/274050798403452928/aa6f1b3c069487dc3d94ac7a540b3bf2.png", "Minimax": "https://cdn.discordapp.com/avatars/171729697082834944/11b0695ea1d153057d27ac1e93554ae4.png", "An1ket":"https://cdn.discordapp.com/avatars/222217668026040325/fe4c239ca5b9abd155fc7c5fa7cf6e27.png"}
 gil_dict = { "STAS1S_OW":
@@ -142,6 +146,8 @@ lr_model = ""
 yuri_model = ""
 gaming_model = ""
 
+wak_model = ""
+
 
 @client.event
 async def on_message(message): #when someone sends a message
@@ -194,6 +200,37 @@ async def on_message(message): #when someone sends a message
                     time.sleep(numwait)
                     if(len(x)>0):
                         webhook_gil1.send(x, username=name, avatar_url=gil_dict.get(name))
+        await message.channel.send("Finished request from "+message.author.mention)
+    elif message.channel.id == wak_room and message.author != client.user and not message.author.bot:
+        await message.channel.send("Received Request. Please wait patiently for generation "+message.author.mention)
+        sentences = []
+        sentences.append(message.content)
+        d = wak_model.runModel(sentences, numpy.random.randint(1,100000))
+        await message.channel.send("Now responding to request '"+ message.content+"' from "+message.author.mention)
+        for i in d:
+            listofmessages = d[i].split('\n')
+            print(listofmessages)
+            current_user_is_1 = True
+            for x in listofmessages:
+                x = x.replace("@everyone", "@ everyone")
+                x = x.replace("@here", "@ here")
+                myRegexp = r"\[(.*)\]"
+                match = re.findall(myRegexp, x)
+                name ="No Name"
+                try:
+                    name = match[0]
+                except IndexError:
+                    name = "No Name"
+                x = re.sub(myRegexp, "", x).strip()
+                if(x != "<|end of text|>"):
+                    numwait = len(x) // 8
+                    if numwait < 1:
+                        numwait = 1
+                    elif numwait > 3:
+                        numwait = 3
+                    time.sleep(numwait)
+                    if(len(x)>0):
+                        webhook_wak.send(x, username=name)
         await message.channel.send("Finished request from "+message.author.mention)
     elif message.channel.id == lr_room and message.author != client.user and not message.author.bot:
         await message.channel.send("Received Request. Please wait patiently for generation "+message.author.mention)
@@ -285,9 +322,10 @@ def main():
     with open(args.config) as f:
         config.read_file(f)
     gil_model = CModel(model_name="GIL", temperature= float(config.get('decoder', 'temperature')))
-    lr_model = CModel(model_name="LR", temperature= float(config.get('decoder', 'temperature')))
+    #lr_model = CModel(model_name="LR", temperature= float(config.get('decoder', 'temperature')))
     yuri_model = CModel(model_name="yuri", temperature= float(config.get('decoder', 'temperature')))
     gaming_model = CModel(model_name="gaming", temperature= float(config.get('decoder', 'temperature')))
+    wak_model = CModel(model_name="wak", temperature= float(config.get('decoder', 'temperature')))
 
     client.run(config.get('chatbot', 'discord_token'))
 
